@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Add Expense</h1>
+<form method="POST">
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required>
+    <label for="concept">Concept:</label>
+    <input type="text" id="concept" name="concept" required>
+    <label for="amount">Amount:</label>
+    <input type="number" step="0.01" id="amount" name="amount" required>
+    <label for="installments">Installments:</label>
+    <input type="number" id="installments" name="installments">
+    <label for="due_date">Due Date:</label>
+    <input type="date" id="due_date" name="due_date">
+    <button type="submit">Add Expense</button>
+</form>
+{% endblock %}
