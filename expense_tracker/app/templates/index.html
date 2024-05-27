@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Welcome to Expense Tracker</h1>
+<h1>Bienvenido al Control de Gastos</h1>
+<ul>
+    {% for expense in expenses %}
+        <li>{{ expense.date }} - {{ expense.description }} - ${{ expense.amount }}</li>
+    {% endfor %}
+</ul>
 {% endblock %}
