@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/catalog.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="static/img/logo.png" alt="Logo">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/new_product">New Product</a></li>
+                <li><a href="/catalog">Catalog</a></li>
+            </ul>
+            <div class="menu-icon">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+<main>
+    <div class="container">
+        <h1>Catalog</h1>
+        <div class="catalog">
+            {% for product in products %}
+                <div class="product">
+                    <img src="{{ url_for('static', filename='upload/' ~ product.image_file) }}" alt="{{ product.name }}">
+                    <h2>{{ product.name }}</h2>
+                    <p>{{ product.description }}</p>
+                    <p>${{ product.price }}</p>
+                    <div class="product-actions">
+                        <a href="{{ url_for('edit_product', product_id=product.id) }}" class="btn">Edit</a>
+                        <form action="{{ url_for('delete_product', product_id=product.id) }}" method="post" style="display:inline;">
+                            <input type="hidden" name="product_id" value="{{ product.id }}">
+                            <button type="submit" class="btn">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="container">
+        <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.menu-icon').click(function() {
+            $('.nav-links').toggleClass('active');
+        });
+    });
+</script>
+</body>
+</html>
